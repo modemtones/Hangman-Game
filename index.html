@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>My First Object</title>
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+    crossorigin="anonymous">
+</head>
+
+<body>
+  <h1>Hangman</h1>
+  <p>Guess the Word!</p>
+
+  <div id="game">
+    <p>Press a letter to start playing!</p>
+  </div>
+
+  <script type="text/javascript">
+    // Creates an array that lists out all of the options (Rock, Paper, or Scissors).
+    var hangmanGame = {
+      wordList: ["backlight", "cornmeal", "disbelief", "hydrated", "mortify", "motion", "reopen", "subsystem", "vacate"],
+      wins: 0,
+      currentWord: "",
+      displayWord: "",
+      userGuesses: "asd",
+      remainingGuesses: 9,
+      gameOver: false,
+      
+      newGame: function () {
+        this.currentWord = this.wordList[Math.floor(Math.random() * this.wordList.length)];
+        console.log(this.currentWord);
+        this.displayWord = "";
+        for(i = 0; i < this.currentWord.length; i++){
+          this.displayWord = this.displayWord + "_";
+        }
+        console.log(this.displayWord);
+        this.remainingGuesses = 9;        
+      },
+
+      processGuess: function (uGuess) {
+        console.log(uGuess);
+        var guess = String(uGuess);
+        console.log(guess);
+        if(this.userGuesses.includes(guess)){
+          this.userGuesses = this.userGuesses + guess;
+          console.log(this.userGuesses);
+          if(this.currentWord.includes(guess)){
+            console.log("Correct Guess")
+            //code for correct guess
+          }
+          else{
+            console.log("Incorrect Guess");
+            this.remainingGuesses--;
+            if(this.remainingGuesses = 0){
+              this.gameOver = true;
+            }
+          }
+        }
+        else{
+          console.log("Character already chosen: " + guess);
+          console.log("Here's the user guesses: " + this.userGuesses);
+        }
+      },
+     
+    };
+
+    hangmanGame.newGame();
+    
+    document.onkeyup = function (event) {
+      var keyPress = event.key;
+      // // Only run the following code block if the user presses "r" or "p" or "s".
+      // if ((keyPress === "h") || (keyPress === "d") || (keyPress === "w") || (keyPress === "s") || (keyPress === "t")) {
+      //   if (keyPress === "h") {
+      //     car.honk();
+      //   }
+      //   if (keyPress === "d") {
+      //     car.driveToWork();
+      //   }
+
+      //   if (keyPress === "w") {
+      //     car.driveAroundWorld();
+      //   }
+
+      //   if (keyPress === "s") {
+      //     car.crash();
+      //   }
+
+      //   if (keyPress === "t") {
+      //     car.getTuneUp();
+      //   }
+      console.log("--------------------");   
+      hangmanGame.processGuess(keyPress);
+    }
+
+
+      // // Creating a variable to hold our new HTML. Our HTML now keeps track of the user and computer guesses, and wins/losses/ties.
+      // var html =
+      //   "<p>You chose: " + userGuess + "</p>" +
+      //   "<p>The computer chose: " + computerGuess + "</p>" +
+      //   "<p>wins: " + wins + "</p>" +
+      //   "<p>losses: " + losses + "</p>" +
+      //   "<p>ties: " + ties + "</p>";
+
+      // // Set the inner HTML contents of the #game div to our html string
+      // document.querySelector("#game").innerHTML = html;
+  </script>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
