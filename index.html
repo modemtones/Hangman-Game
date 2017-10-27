@@ -15,28 +15,56 @@
 </head>
 
 <body>
-  <div class="jumbotron">  
-    <h1 class="text-center">Hangman!</h1>  
-    <div class="text-center">  
+  <audio loop autoplay>
+    <source src="./assets/audio/call.wav" type="audio/wav">
+  </audio>
+  <div class="jumbotron">
+    <h1 class="text-center">Hangman!</h1>
+    <div class="text-center">
       <!-- Here we have our button for generating random numbers (#random-button) -->
-      <button id="new-game" class="btn btn-success btn-lg">
-        <h1>New Game</h1>
-      </button>  
-    </div>  
+      <button id="new-game" class="btn btn-outline-info">
+        <h4>New Game</h4>
+      </button>
+    </div>
   </div>
-  
-  <!-- Here we have div called "randomNumber" where our random number will go -->
-  <h2 class="text-center">Guess This Word</h2>
-  <h3 class="text-center" id="random-word" style="letter-spacing: 10px;"></h3>
-  
-  <h2 class="text-center">Guesses Remaining</h2>
-  <h3 class="text-center" id="guesses-remaining"></h3>
-
-  <h2 class="text-center">Letters Remaining</h2>
-  <h3 class="text-center" id="letters-remaining"></h3>
-
-  <h2 class="text-center">Wins</h2>
-  <h3 class="text-center" id="number-of-wins"></h3>
+  <div class="container">
+    <div class="row">
+      <div class="col-4">
+        <div class="card text-white bg-dark mb-3">
+          <div class="card-body">
+            <h4 class="card-title">Wins</h4>
+            <p class="card-text" id="number-of-wins">0</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="card text-white bg-info mb-3">
+          <div class="card-body">
+            <h4 class="card-title">Guess This Word</h4>
+            <p class="card-text" id="random-word" style="letter-spacing: 10px;">?</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <!-- <div class="row"> -->
+          <div class="card text-white bg-dark mb-3">
+            <div class="card-body">
+              <h4 class="card-title">Guesses Remaining</h4>
+              <p class="card-text" id="guesses-remaining">-</p>
+            </div>
+          </div>
+        <!-- </div> -->
+        <!-- <div class="row"> -->
+          <div class="card text-white bg-dark mb-3">
+            <div class="card-body">
+              <h4 class="card-title">Letters Remaining</h4>
+              <p class="card-text" id="letters-remaining">-</p>
+            </div>
+          </div>
+        <!-- </div> -->
+      </div>
+    </div>
+  </div>
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->

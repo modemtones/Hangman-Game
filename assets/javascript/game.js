@@ -120,6 +120,7 @@ $(document).ready(function() {
     $("#random-word").text(hangmanGame.displayWord);
     $("#guesses-remaining").text(hangmanGame.remainingGuesses);
     $("#letters-remaining").text(hangmanGame.userGuesses);
-    $("#letters-remaining").text(hangmanGame.wins);
+    $("#number-of-wins").text(hangmanGame.wins);
   };
+
 });
