@@ -36,6 +36,7 @@ var hangmanGame = {
     console.log(this.userGuesses);
 
     this.remainingGuesses = 9;
+    this.gameOver = false;
   },
 
   processGuess: function(uGuess) {
@@ -52,8 +53,33 @@ var hangmanGame = {
       if (this.currentWord.includes(guess)) {
         //correct guess
         console.log("Correct Guess");
+
         //code for correct guess
-        //adjust display string with chars
+        var tempWord = this.currentWord;
+        var replaceCounter = 0;
+
+        //adjust display string with guess chars
+        while (tempWord.indexOf(guess) != -1) {
+          var pos = tempWord.indexOf(guess);
+          tempWord =
+            tempWord.substr(0, pos) + tempWord.substr(pos + 1, tempWord.length);
+          this.displayWord =
+            this.displayWord.substr(0, pos + replaceCounter) +
+            guess +
+            this.displayWord.substr(
+              pos + replaceCounter + 1,
+              this.displayWord.length
+            );
+          replaceCounter++;
+        }
+
+        //check if user had correctly guessed the whole word
+        if (this.currentWord == this.displayWord){
+          this.gameOver = true;
+          this.wins++;
+          alert("WINNER WINNER CHICKEN DINNER! Click New Game to start a new game");
+        }
+
       } else {
         console.log("Incorrect Guess");
         //incorrect guess, subtract from remaining guesses and check for game over
@@ -94,37 +120,6 @@ $(document).ready(function() {
     $("#random-word").text(hangmanGame.displayWord);
     $("#guesses-remaining").text(hangmanGame.remainingGuesses);
     $("#letters-remaining").text(hangmanGame.userGuesses);
+    $("#letters-remaining").text(hangmanGame.wins);
   };
 });
-
-// // Only run the following code block if the user presses "r" or "p" or "s".
-// if ((keyPress === "h") || (keyPress === "d") || (keyPress === "w") || (keyPress === "s") || (keyPress === "t")) {
-//   if (keyPress === "h") {
-//     car.honk();
-//   }
-//   if (keyPress === "d") {
-//     car.driveToWork();
-//   }
-
-//   if (keyPress === "w") {
-//     car.driveAroundWorld();
-//   }
-
-//   if (keyPress === "s") {
-//     car.crash();
-//   }
-
-//   if (keyPress === "t") {
-//     car.getTuneUp();
-//   }
-
-// // Creating a variable to hold our new HTML. Our HTML now keeps track of the user and computer guesses, and wins/losses/ties.
-// var html =
-//   "<p>You chose: " + userGuess + "</p>" +
-//   "<p>The computer chose: " + computerGuess + "</p>" +
-//   "<p>wins: " + wins + "</p>" +
-//   "<p>losses: " + losses + "</p>" +
-//   "<p>ties: " + ties + "</p>";
-
-// // Set the inner HTML contents of the #game div to our html string
-// document.querySelector("#game").innerHTML = html;
